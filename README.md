@@ -16,11 +16,11 @@
 | birthday           | date   | null: false                  |
 
 ### Association
-* has_many :product dependent :destroy
-* belongs_to :destination dependent :destroy
+* has_many :products dependent :destroy
+* belongs_to :destinations dependent :destroy
 
 
-## destination テーブル
+## destinations テーブル
 
 | Column           | Type       | Options                        |
 | -------          | ---------- | ------------------------------ |
@@ -32,11 +32,11 @@
 | phone_number     | string     | null: false                    |
 
 ### Association
-*  belongs_to :user dependent :destroy
+*  belongs_to :users dependent :destroy
 
 
 
-## product テーブル
+## products テーブル
 
 | Column           | Type       | Options                        |
 | -------          | ---------- | ------------------------------ |
@@ -53,7 +53,7 @@
 | user_id          | integer    | null: false                    |
 
 ### Association
-*  belongs_to :user dependent :destroy
+*  belongs_to :users dependent :destroy
 
 
 ## Purchase_managements テーブル
@@ -63,4 +63,4 @@
 | item_id     | integer    | null: false                    |
 
 ### Association
-*  belongs_to :product dependent :destroy
+*  belongs_to :products dependent :destroy
