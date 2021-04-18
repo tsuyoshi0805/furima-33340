@@ -32,7 +32,7 @@
 | phone_number     | string     | null: false                    |
 
 ### Association
-*  belongs_to :users dependent :destroy
+*  belongs_to :purchase_managements dependent :destroy
 
 
 
@@ -46,21 +46,21 @@
 | status           | string     | null: false                    |
 | shipping_cost    | string     | null: false                    |
 | shipping_days    | string     | null: false                    |
-| prefecture_id    | integer    | null: false                    |
-| category_id      | integer    | null: false                    |
-| brand_id         | integer    | null: false                    |
-| shipping_id      | integer    | null: false                    |
-| user_id          | integer    | null: false                    |
+| category         | string     | null: false                    |
+| shipping_area    | string     | null: false                    |
+| user_id          | string     | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :users dependent :destroy
+*  belongs_to :user dependent :destroy
 
 
 ## Purchase_managements テーブル
 | Column      | Type       | Options                        |
 | ------      | ---------- | ------------------------------ |
-| user_id     | integer    | null: false                    |
-| item_id     | integer    | null: false                    |
+| user_id     | reference  | foreign_key: true              |
+| item_id     | reference  | foreign_key: true              |
 
 ### Association
 *  belongs_to :products dependent :destroy
+*  belongs_to :user dependent :destroy
+*  belongs_to :destination dependent :destroy
