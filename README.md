@@ -17,22 +17,23 @@
 
 ### Association
 * has_many :products dependent :destroy
-* belongs_to :destinations dependent :destroy
+
 
 
 ## destinations テーブル
 
-| Column           | Type       | Options                        |
-| -------          | ---------- | ------------------------------ |
-| post_code        | string     | null: false                    |
-| prefecture_id    | integer    | null: false                    |
-| city             | string     | null: false                    |
-| address          | string     | null: false                    |
-| building_name    | string     |                                |
-| phone_number     | string     | null: false                    |
+| Column                 | Type       | Options                        |
+| -------                | ---------- | ------------------------------ |
+| post_code              | string     | null: false                    |
+| prefecture_id          | integer    | null: false                    |
+| city                   | string     | null: false                    |
+| address                | string     | null: false                    |
+| building_name          | string     |                                |
+| phone_number           | string     | null: false                    |
+| Purchase_management_id | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :purchase_managements dependent :destroy
+*  belongs_to :purchase_management dependent :destroy
 
 
 
@@ -43,24 +44,24 @@
 | name             | string     | null: false                    |
 | price            | integer    | null: false                    |
 | description      | text       | null: false                    |
-| status           | string     | null: false                    |
-| shipping_cost    | string     | null: false                    |
-| shipping_days    | string     | null: false                    |
-| category         | string     | null: false                    |
-| shipping_area    | string     | null: false                    |
-| user_id          | string     | null: false,foreign_key:true   |
+| status_id        | integer    | null: false,foreign_key:true   |
+| shipping_cost_id | integer    | null: false,foreign_key:true   |
+| shipping_days_id | integer    | null: false,foreign_key:true   |
+| category_id      | integer    | null: false,foreign_key:true   |
+| shipping_area_id | integer    | null: false,foreign_key:true   |
+| user_id          | integer    | null: false,foreign_key:true   |
 
 ### Association
 *  belongs_to :user dependent :destroy
-
+*  has_one :Purchase_management dependent :destroy
 
 ## Purchase_managements テーブル
 | Column      | Type       | Options                        |
 | ------      | ---------- | ------------------------------ |
-| user_id     | reference  | foreign_key: true              |
-| item_id     | reference  | foreign_key: true              |
+| user_id     | integer    | null: false,foreign_key:true   |
+| product_id  | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :products dependent :destroy
+*  belongs_to :product dependent :destroy
 *  belongs_to :user dependent :destroy
-*  belongs_to :destination dependent :destroy
+*  has_one :destination dependent :destroy
