@@ -7,18 +7,18 @@
 | Column                 | Type       | Options                      |
 | ---------------        | ------     | ---------------------------- |
 | nickname               | string     | null: false                  |
-| email                  | string     | null: false,unique: true     |
+| email                  | string     | null: false,unique:          |
 | encrypted_password     | string     | null: false                  |
 | family_name            | string     | null: false                  |
 | first_name             | string     | null: false                  |
 | family_name_kana       | string     | null: false                  |
 | first_name_kana        | string     | null: false                  |
 | birthday               | date       | null: false                  |
-| Purchase_management_id | integer    | null: false,foreign_key:true |
+
 
 ### Association
 * has_many :products dependent :destroy
-*  belongs_to :purchase_management dependent :destroy
+* has_many :purchase_management dependent :destroy
 
 
 
@@ -46,16 +46,15 @@
 | name             | string     | null: false                    |
 | price            | integer    | null: false                    |
 | description      | text       | null: false                    |
-| status_id        | integer    | null: false,foreign_key:true   |
-| shipping_cost_id | integer    | null: false,foreign_key:true   |
-| shipping_days_id | integer    | null: false,foreign_key:true   |
-| category_id      | integer    | null: false,foreign_key:true   |
-| shipping_area_id | integer    | null: false,foreign_key:true   |
-| user_id          | integer    | null: false,foreign_key:true   |
+| status_id        | integer    | null: false                    |
+| shipping_cost_id | integer    | null: false                    |
+| shipping_days_id | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| user_id          | integer    | null: false                    |
 
 ### Association
-*  belongs_to :user dependent :destroy
-*  has_one :purchase_management dependent :destroy
+*  belongs_to :purchase_management dependent :destroy
 
 ## Purchase_managements テーブル
 | Column      | Type       | Options                        |
@@ -64,6 +63,6 @@
 | product_id  | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :product dependent :destroy
+*  has_one :product dependent :destroy
 *  belongs_to :user dependent :destroy
 *  has_one :destination dependent :destroy
