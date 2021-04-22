@@ -48,13 +48,14 @@
 | description      | text       | null: false                    |
 | status_id        | integer    | null: false                    |
 | shipping_cost_id | integer    | null: false                    |
-| shipping_days_id | integer    | null: false                    |
+| shipping_day_id | integer    | null: false                    |
 | category_id      | integer    | null: false                    |
 | shipping_area_id | integer    | null: false                    |
 | user_id          | integer    | null: false                    |
 
 ### Association
-*  belongs_to :purchase_management dependent :destroy
+*  has_one :purchase_management dependent :destroy
+*  belongs_to :user dependent :destroy
 
 ## Purchase_managements テーブル
 | Column      | Type       | Options                        |
@@ -63,6 +64,6 @@
 | product_id  | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  has_one :product dependent :destroy
+*  belongs_to :product dependent :destroy
 *  belongs_to :user dependent :destroy
 *  has_one :destination dependent :destroy
