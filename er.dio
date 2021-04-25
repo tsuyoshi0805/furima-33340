@@ -17,10 +17,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="4" value="destinationsテーブル" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
-                    <mxGeometry x="490" y="60" width="160" height="150" as="geometry"/>
+                    <mxGeometry x="490" y="60" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="post_code&#10;shipping_area_id&#10;city&#10;address&#10;building_name&#10;phone_number" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="4">
-                    <mxGeometry y="30" width="160" height="120" as="geometry"/>
+                <mxCell id="5" value="post_code&#10;shipping_area_id&#10;city&#10;address&#10;building_name&#10;phone_number&#10;purchase_management_id" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="4">
+                    <mxGeometry y="30" width="190" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="productsテーブル" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
                     <mxGeometry x="80" y="340" width="160" height="180" as="geometry"/>
