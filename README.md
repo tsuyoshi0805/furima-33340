@@ -18,7 +18,7 @@
 
 ### Association
 * has_many :products dependent :destroy
-* has_many :purchase_management dependent :destroy
+* has_many :purchase_managements dependent :destroy
 
 
 
@@ -35,7 +35,7 @@
 | purchase_management_id | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :purchase_management dependent :destroy
+*  belongs_to :purchase_management 
 
 
 
@@ -55,7 +55,7 @@
 
 ### Association
 *  has_one :purchase_management dependent :destroy
-*  belongs_to :user dependent :destroy
+*  belongs_to :user 
 
 ## Purchase_managements テーブル
 | Column      | Type       | Options                        |
@@ -64,6 +64,6 @@
 | product_id  | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :product dependent :destroy
-*  belongs_to :user dependent :destroy
+*  belongs_to :product 
+*  belongs_to :user 
 *  has_one :destination dependent :destroy
