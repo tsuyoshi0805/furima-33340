@@ -16,30 +16,20 @@ context 'ユーザー登録ができるとき'
           expect(@user).to be_valid
         end
     
-      
-    
         it "passwordが6文字以上であれば登録できること" do
           @user.password = 'abc123'
           @user.password_confirmation ='abc123'
           @user.valid?
           expect(@user).to be_valid
         end
-    
-        
-    
+
         it "passwordが6文字以上で、英数字の組み合わせであれば登録できること" do
           @user.password = "abcd12"
           @user.password_confirmation = "abcd12"
           @user.valid?
           expect(@user).to be_valid
         end
-    
-    
         
-    
-      
-     
-     
       context 'ユーザー登録ができない時'
 
       it "nicknameがない場合は登録できないこと" do
@@ -72,7 +62,7 @@ context 'ユーザー登録ができるとき'
         @user.valid?
         expect(@user.errors[:password]).to include("can't be blank")
       end
-      
+
       it "passwordが5文字以下であれば登録できないこと" do
         @user.password = 'abc12'
         @user.password_confirmation = 'abc12'
@@ -80,13 +70,10 @@ context 'ユーザー登録ができるとき'
         expect(@user.errors[:password]).to include("is too short (minimum is 6 characters)")
       end
 
-
-
       it "passwordが数字のみの場合は登録できないこと" do
         @user.password = "1234567"
         @user.password_confirmation = "1234567"      
-        @user.valid?
-        
+        @user.valid?      
         expect(@user.errors[:password]).to include("is invalid")
       end
   
@@ -98,9 +85,10 @@ context 'ユーザー登録ができるとき'
       end
   
       it "password_confirmationがない場合は登録できないこと" do
-        @user.password_confirmation = nil
+        @user.password_confirmation = ""
+        
         @user.valid?
-        expect(@user.errors[:password_confirmation]).to include()
+        expect(@user.errors[:password_confirmation]).to include("doesn't match Password")
       end
   
       it "passwordとpassword_confirmationが一致していない場合は登録できないこと" do
@@ -116,7 +104,7 @@ context 'ユーザー登録ができるとき'
         @user.valid?
         expect(@user.errors[:first_name]).to include("can't be blank")
       end
-  
+
       it "last_nameがない場合は登録できないこと" do
         @user.family_name = nil
         @user.valid?
@@ -129,18 +117,11 @@ context 'ユーザー登録ができるとき'
         expect(@user.errors[:first_name_kana]).to include("can't be blank")
       end
   
-
-
-
-
       it "family_name_kanaがない場合は登録できないこと" do
         @user.family_name_kana = nil
         @user.valid?
         expect(@user.errors[:family_name_kana]).to include("can't be blank")
       end
-
-
-
 
       it "birthdayがない場合は登録できないこと" do
         @user.birthday = nil
@@ -148,13 +129,6 @@ context 'ユーザー登録ができるとき'
         expect(@user.errors[:birthday]).to include("can't be blank")
       end
     end
-
-
-
-
-
-
-  
 
       before do
         @user = FactoryBot.build(:user)
@@ -167,18 +141,25 @@ context 'ユーザー登録ができるとき'
           expect(@user).to be_valid
         end
     
+        it "first_nameが漢字・ひらがな・カタカタ以外であれば登録できないこと" do
+          @user.first_name = "ABCD"
+          @user.valid?
+          expect(@user.errors[:first_name]).to include("is invalid")
+        end
+
         it "family_nameが全角文字であれば登録できること" do
           @user.family_name  = "ぜんかく"
           @user.valid?
           expect(@user).to be_valid
         end
-    
+
+        it "family_nameが漢字・ひらがな・カタカタ以外であれば登録できないこと" do
+          @user.family_name = "ABCD"
+          @user.valid?
+          expect(@user.errors[:family_name]).to include("is invalid")
+        end
       end
     
-
-
-
-
       before do
         @user = FactoryBot.build(:user)
         end
@@ -190,11 +171,24 @@ context 'ユーザー登録ができるとき'
           expect(@user).to be_valid
         end
     
+        it "名字のフリガナは全角（カタカナ）でなければ登録できない" do
+          @user.first_name_kana = "かな"
+          
+          @user.valid?
+          expect(@user.errors[:first_name_kana]).to include("is invalid")
+          end
+          
         it "family_name_kanaが全角カナ文字であれば登録できること" do
           @user.family_name_kana = "ゼンカクカナ"
           @user.valid?
           expect(@user).to be_valid
         end
-    
+
+        it "名前のフリガナは全角（カタカナ）でなければ登録できない" do
+          @user.family_name_kana = "かな"
+          
+          @user.valid?
+          expect(@user.errors[:family_name_kana]).to include("is invalid")
+          end
       end
     end
