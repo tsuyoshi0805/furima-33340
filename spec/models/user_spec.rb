@@ -108,6 +108,13 @@ context 'ユーザー登録ができるとき'
         expect(@user.errors[:password]).to include("is invalid")
       end
   
+      it "passwordが全角が含まれる場合は登録できないこと" do
+        @user.password = "ａｂｃｄｅｆg"
+        @user.password_confirmation = "ａｂｃｄｅｆg"
+        @user.valid?
+        expect(@user.errors[:password]).to include("is invalid")
+      end
+
       it "password_confirmationがない場合は登録できないこと" do
         @user.password_confirmation = ""
         
@@ -129,7 +136,7 @@ context 'ユーザー登録ができるとき'
         expect(@user.errors[:first_name]).to include("can't be blank")
       end
 
-      it "last_nameがない場合は登録できないこと" do
+      it "family_nameがない場合は登録できないこと" do
         @user.family_name = nil
         @user.valid?
         expect(@user.errors[:family_name]).to include("can't be blank")
