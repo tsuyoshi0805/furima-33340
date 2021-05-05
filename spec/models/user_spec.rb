@@ -30,6 +30,30 @@ context 'ユーザー登録ができるとき'
           expect(@user).to be_valid
         end
         
+        it "first_kanaが全角カナ文字であれば登録できること" do
+          @user.first_name_kana = "ゼンカクカナ"
+          @user.valid?
+          expect(@user).to be_valid
+        end
+
+        it "first_nameが全角文字であれば登録できること" do
+          @user.first_name = "ぜんかく"
+          @user.valid?
+          expect(@user).to be_valid
+        end
+
+        it "family_nameが全角文字であれば登録できること" do
+          @user.family_name  = "ぜんかく"
+          @user.valid?
+          expect(@user).to be_valid
+        end
+
+        it "family_name_kanaが全角カナ文字であれば登録できること" do
+          @user.family_name_kana = "ゼンカクカナ"
+          @user.valid?
+          expect(@user).to be_valid
+        end
+
       context 'ユーザー登録ができない時'
 
       it "nicknameがない場合は登録できないこと" do
@@ -128,47 +152,24 @@ context 'ユーザー登録ができるとき'
         @user.valid?
         expect(@user.errors[:birthday]).to include("can't be blank")
       end
-    end
 
-      before do
-        @user = FactoryBot.build(:user)
+      it "名前のフリガナは全角（カタカナ）でなければ登録できない" do
+        @user.family_name_kana = "かな"
+        
+        @user.valid?
+        expect(@user.errors[:family_name_kana]).to include("is invalid")
         end
-      describe '#ぜんかく' do
-    
-        it "first_nameが全角文字であれば登録できること" do
-          @user.first_name = "ぜんかく"
-          @user.valid?
-          expect(@user).to be_valid
-        end
-    
+
         it "first_nameが漢字・ひらがな・カタカタ以外であれば登録できないこと" do
           @user.first_name = "ABCD"
           @user.valid?
           expect(@user.errors[:first_name]).to include("is invalid")
         end
-
-        it "family_nameが全角文字であれば登録できること" do
-          @user.family_name  = "ぜんかく"
-          @user.valid?
-          expect(@user).to be_valid
-        end
-
+    
         it "family_nameが漢字・ひらがな・カタカタ以外であれば登録できないこと" do
           @user.family_name = "ABCD"
           @user.valid?
           expect(@user.errors[:family_name]).to include("is invalid")
-        end
-      end
-    
-      before do
-        @user = FactoryBot.build(:user)
-        end
-      describe '#ゼンカクカナ' do
-    
-        it "first_kanaが全角カナ文字であれば登録できること" do
-          @user.first_name_kana = "ゼンカクカナ"
-          @user.valid?
-          expect(@user).to be_valid
         end
     
         it "名字のフリガナは全角（カタカナ）でなければ登録できない" do
@@ -177,18 +178,6 @@ context 'ユーザー登録ができるとき'
           @user.valid?
           expect(@user.errors[:first_name_kana]).to include("is invalid")
           end
-          
-        it "family_name_kanaが全角カナ文字であれば登録できること" do
-          @user.family_name_kana = "ゼンカクカナ"
-          @user.valid?
-          expect(@user).to be_valid
-        end
-
-        it "名前のフリガナは全角（カタカナ）でなければ登録できない" do
-          @user.family_name_kana = "かな"
-          
-          @user.valid?
-          expect(@user.errors[:family_name_kana]).to include("is invalid")
-          end
+      
       end
     end
