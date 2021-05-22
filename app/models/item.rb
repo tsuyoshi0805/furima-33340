@@ -5,7 +5,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
 
-    validates :name 
+    validates :name , length: { maximum: 40 }
     validates :price 
     validates :description
     validates :category_id
@@ -14,5 +14,9 @@ class Item < ApplicationRecord
     validates :shipping_day_id
     validates :shipping_area_id
     validates :image
+
+    
+
+
     end
   end
