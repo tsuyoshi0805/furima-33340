@@ -68,7 +68,37 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
     end
+  it "299円以下では登録できないこと" do
+      @item.price = 299
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
   end
+  it "10,000,000以上では登録できないこと"do
+      @item.price = 10000000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+  it "全角文字では登録できないこと"do
+      @item.price = "テスト"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+  it "英数混合では登録できないこと"do
+      @item.price = "abc123"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+  it "半角英語のみでは登録できないこと"do
+     @item.price = "abcd"
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Price is not included in the list")
+  end
+  it "画像がなければ登録できない"do
+     @item.image = nil
+     @item.valid?
+     expect(@item.errors.full_messages).to include("Image can't be blank")
+  end
+end
 end
 end
 
