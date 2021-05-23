@@ -3,12 +3,12 @@ FactoryBot.define do
     
     name              {"tomato"}
     price             {300}
-    description       {1}
-    status_id         {1}
-    shipping_day_id   {1}
-    shipping_cost_id  {1}
-    shipping_area_id  {1}
-    category_id       {1}
+    description       {2}
+    status_id         {2}
+    shipping_day_id   {2}
+    shipping_cost_id  {2}
+    shipping_area_id  {2}
+    category_id       {2}
     
     association :user
 
