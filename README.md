@@ -64,6 +64,6 @@
 | product_id  | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :product 
+*  belongs_to :items 
 *  belongs_to :user 
 *  has_one :destination dependent :destroy

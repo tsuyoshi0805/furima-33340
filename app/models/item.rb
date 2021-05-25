@@ -2,6 +2,8 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_one :buy
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :shipping_cost
 
   with_options presence: true do
     validates :name, length: { maximum: 40 }
