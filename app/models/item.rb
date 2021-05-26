@@ -4,6 +4,11 @@ class Item < ApplicationRecord
   has_one :buy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :shipping_cost
+  belongs_to :status
+  belongs_to :shipping_day
+  belongs_to :category
+  belongs_to :shipping_area
+  belongs_to :user
 
   with_options presence: true do
     validates :name, length: { maximum: 40 }
