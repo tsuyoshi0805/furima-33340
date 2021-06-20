@@ -1,4 +1,4 @@
 class Address < ApplicationRecord
-  belongs_to :Purchase_management
+  belongs_to :order
   has_many :items
 end

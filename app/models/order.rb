@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  validates :price, presence: true
-  belongs_to :user  
-  belongs_to :item  
+  belongs_to :items 
+　 belongs_to :user 
+　 has_one :addresses dependent :destroy
 end
