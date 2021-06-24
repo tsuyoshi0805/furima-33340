@@ -5,7 +5,8 @@ class OrdersController < ApplicationController
   end
     def create
       @orderaddress = OrderAddress.new(orderaddress_params)
-    if @orderaddress.valid?
+      @item = Item.find(params[:item_id])
+      if @orderaddress.valid?
       @orderaddress.save
       redirect_to action: :index
     else
