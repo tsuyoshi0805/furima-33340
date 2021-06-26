@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
     before do
-      @orderaddress = FactoryBot.build(:order_address)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      @orderaddress = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+      sleep(0.1)
     end
           it '全ての値が正しく入力されていれば購入できること' do
             expect(@orderaddress).to be_valid
@@ -21,9 +24,9 @@ RSpec.describe OrderAddress, type: :model do
           end
 
           it 'shipping_areaが未選択だと購入できない' do
-          @orderaddress.shipping_area_id = 0
+          @orderaddress.shipping_area_id = 1
           @orderaddress.valid?
-            expect(@orderaddress.errors.full_messages).to include("User can't be blank")
+            expect(@orderaddress.errors.full_messages).to include("Shipping area must be other than 1")
           end
 
           it 'cityが空だと購入できない' do
@@ -35,7 +38,7 @@ RSpec.describe OrderAddress, type: :model do
           it 'addressが空だと購入できない' do
           @orderaddress.address = nil
           @orderaddress.valid?
-            expect(@orderaddress.errors.full_messages).to include("Item can't be blank")
+            expect(@orderaddress.errors.full_messages).to include("Address can't be blank")
           end
 
           it 'phone_numberが空だと購入できない' do
