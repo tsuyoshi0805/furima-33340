@@ -35,10 +35,11 @@
     <%end%>
     <%end%>
     
-    
      <%if user_signed_in?%>
       <% if current_user.id == @item.user_id%>
         <%=nil%>
+        <%elsif @item.order.present?%> 
+         <%= link_to "売り切れました",root_path,class:"disabled-button bold"%>
       <%else%>
         <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
       <%end%>
