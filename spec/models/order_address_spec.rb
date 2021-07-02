@@ -7,10 +7,21 @@ RSpec.describe OrderAddress, type: :model do
       @orderaddress = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
       sleep(0.1)
     end
+
+context '購入ができる時（正常系）' do  
+
           it '全ての値が正しく入力されていれば購入できること' do
             expect(@orderaddress).to be_valid
           end
+          
+          it 'building_nameが空でも購入できること' do
+            @orderaddress.building_name = nil
+            @orderaddress.valid?
+            end
+          end
 
+context '購入ができない時（異常系）' do   
+       
           it 'post_codeが空だと購入できない' do
           @orderaddress.post_code = nil
           @orderaddress.valid?
@@ -59,4 +70,6 @@ RSpec.describe OrderAddress, type: :model do
             expect(@orderaddress.errors.full_messages).to include("Token can't be blank")
           end
         end
-     
+      end
+
+

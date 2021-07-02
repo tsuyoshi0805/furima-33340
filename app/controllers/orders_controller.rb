@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_action :sold_out_item, only: [:index]
   def index
     @orderaddress = OrderAddress.new
-    @item = Item.find(params[:item_id])
     if @item.user.id == current_user.id
       redirect_to root_path
     end
@@ -25,7 +24,7 @@ class OrdersController < ApplicationController
   
     private
     def orderaddress_params
-      params.require(:order_address).permit(:name, :post_code, :shipping_area_id, :city, :address, :building_name, :phone_number, :order_id).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
+      params.require(:order_address).permit(:name, :post_code, :shipping_area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
     end
     def pay_item
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
