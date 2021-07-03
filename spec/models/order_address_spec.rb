@@ -69,7 +69,33 @@ context '購入ができない時（異常系）' do
             @orderaddress.valid?
             expect(@orderaddress.errors.full_messages).to include("Token can't be blank")
           end
+
+
+            it 'phone_numberが12桁では購入できない' do
+              @orderaddress.phone_number = "090123456678"
+              @orderaddress.valid?
+                expect(@orderaddress.errors.full_messages).to include("Phone number is invalid")
+              end
+
+              it 'phone_numberが英数混合では購入できない' do
+                @orderaddress.phone_number = "090abcd1234"
+                @orderaddress.valid?
+                  expect(@orderaddress.errors.full_messages).to include("Phone number is invalid")
+                end
+
+                it "user_idが空では登録できないこと" do
+                  @orderaddress.user_id = nil
+                  @orderaddress.valid?
+                  expect(@orderaddress.errors.full_messages).to include("User can't be blank")
+                end
+
+                it "item_idが空では登録できないこと" do
+                  @orderaddress.item_id = nil
+                  @orderaddress.valid?
+                  expect(@orderaddress.errors.full_messages).to include("Item can't be blank")
+                end
+          end
         end
-      end
+    
 
 
