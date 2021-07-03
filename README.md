@@ -22,7 +22,7 @@
 
 
 
-## destinations テーブル
+## addresses テーブル
 
 | Column                 | Type       | Options                        |
 | -------                | ---------- | ------------------------------ |
@@ -32,10 +32,10 @@
 | address                | string     | null: false                    |
 | building_name          | string     |                                |
 | phone_number           | string     | null: false                    |
-| purchase_management_id | integer    | null: false,foreign_key:true   |
+| order_id               | integer    | null: false,foreign_key:true   |
 
 ### Association
-*  belongs_to :purchase_management 
+*  belongs_to :order
 
 
 
@@ -57,13 +57,13 @@
 *  has_one :purchase_management dependent :destroy
 *  belongs_to :user 
 
-## Purchase_managements テーブル
+## Orders テーブル
 | Column      | Type       | Options                        |
 | ------      | ---------- | ------------------------------ |
 | user_id     | integer    | null: false,foreign_key:true   |
-| product_id  | integer    | null: false,foreign_key:true   |
+| item_id     | integer    | null: false,foreign_key:true   |
 
 ### Association
 *  belongs_to :items 
 *  belongs_to :user 
-*  has_one :destination dependent :destroy
+*  has_one :addresses dependent :destroy
