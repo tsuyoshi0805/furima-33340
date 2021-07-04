@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :sold_out_item, only: [:index]
+  before_action :sold_out_item, only: [:index, :create]
+  
+
   def index
     @orderaddress = OrderAddress.new
     if @item.user.id == current_user.id
@@ -9,7 +11,6 @@ class OrdersController < ApplicationController
   end
     def create
       @orderaddress = OrderAddress.new(orderaddress_params)
-      @item = Item.find(params[:item_id])
       if @orderaddress.valid?
         pay_item
         
@@ -19,7 +20,6 @@ class OrdersController < ApplicationController
         render action: :index
      end
     end
-       
 
     private
     def orderaddress_params
@@ -37,8 +37,10 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
    
     if @item.order.present?
-    
-    redirect_to root_path 
+    redirect_to root_path   
+    end
+
+
 end
 end
 end
